@@ -27,6 +27,8 @@ const validationSchema = Yup.object({
       /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
       "Invalid phone number"
     )
+    .min(10, "Must be at least 10 characters")
+    .max(16, "Can not be more than 16 characters")
     .required("Required"),
   gender: Yup.string().required("Required").max(1, "Must be 1 character"),
 });
@@ -47,13 +49,9 @@ const RegistrationForm = () => {
     >
       {({ isSubmitting }) => (
         <Form className="registration-form">
+          <h3>Registration Form</h3>
           <label htmlFor="firstName">First Name</label>
-          <Field
-            type="text"
-            id="firstName"
-            name="firstName"
-            className="input-field"
-          />
+          <Field type="text" id="firstName" name="firstName" />
           <ErrorMessage
             name="firstName"
             component="div"
@@ -61,12 +59,7 @@ const RegistrationForm = () => {
           />
 
           <label htmlFor="lastName">Last Name</label>
-          <Field
-            type="text"
-            id="lastName"
-            name="lastName"
-            className="input-field"
-          />
+          <Field type="text" id="lastName" name="lastName" />
           <ErrorMessage
             name="lastName"
             component="div"
@@ -74,7 +67,7 @@ const RegistrationForm = () => {
           />
 
           <label htmlFor="email">Email Address</label>
-          <Field type="email" id="email" name="email" className="input-field" />
+          <Field type="email" id="email" name="email" />
           <ErrorMessage
             name="email"
             component="div"
@@ -82,12 +75,7 @@ const RegistrationForm = () => {
           />
 
           <label htmlFor="phoneNumber">Phone Number</label>
-          <Field
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            className="input-field"
-          />
+          <Field type="text" id="phoneNumber" name="phoneNumber" />
           <ErrorMessage
             name="phoneNumber"
             component="div"
@@ -95,7 +83,7 @@ const RegistrationForm = () => {
           />
 
           <label htmlFor="gender">Gender</label>
-          <Field as="select" id="gender" name="gender" className="input-field">
+          <Field as="select" id="gender" name="gender">
             <option value="">Select</option>
             <option value="M">M</option>
             <option value="F">F</option>
