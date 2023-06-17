@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  NavLink,
+  Navigate,
 } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import RegistrationForm from "./pages/registration/RegistrationForm";
@@ -14,8 +14,10 @@ function App() {
     <Router>
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/registration" element={<RegistrationForm />} />
+          <Route path="/employee/list" element={<HomePage />} />
+          <Route path="/employee/add" element={<RegistrationForm />} />
+          <Route path="/employee/update" element={<RegistrationForm />} />
+          <Route path="*" element={<Navigate to="/employee/list" replace />} />
         </Routes>
       </main>
     </Router>

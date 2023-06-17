@@ -66,9 +66,23 @@
         color: white;
 
         &:hover {
-          background-color: $light-gray;
+          background-color: green;
         }
       }
     }
+  }
+}
+
+.del-button {
+  background-color: $dark-gray;
+
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: white;
+
+  &:hover {
+    background-color: red;
   }
 }

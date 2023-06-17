@@ -1,6 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./registration-page.scss";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const initialValues = {
   firstName: "",
@@ -30,26 +32,56 @@ const validationSchema = Yup.object({
     .min(10, "Must be at least 10 characters")
     .max(16, "Can not be more than 16 characters")
     .required("Required"),
-  gender: Yup.string().required("Required").max(1, "Must be 1 character"),
+  gender: Yup.string().required("Required"),
 });
 
 const RegistrationForm = () => {
-  const handleSubmit = (values: any, { setSubmitting }: any) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);
+  const location = useLocation();
+
+  // console.log("location.state", location.state);
+
+  const handleSubmit = async (values: any, { setSubmitting }: any) => {
+    if (location.state?._id) {
+      try {
+        const employeeId = location.state?._id;
+        await axios.put(`http://localhost:3001/employee/${employeeId}`, values);
+
+        alert("Employee updated successfully!");
+
+        setSubmitting(false);
+      } catch (error: any) {
+        alert("Failed to update employee. Please try again.");
+
+        setSubmitting(false);
+      }
+    } else {
+      try {
+        await axios.post("http://localhost:3001/employee", values);
+
+        console.log("Submitted values:", values);
+
+        alert("Successfully Added!");
+
+        setSubmitting(false);
+      } catch (error: any) {
+        console.error("Error adding employee:", error);
+
+        alert("Failed to add employee. Please try again.");
+
+        setSubmitting(false);
+      }
+    }
   };
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={location.state?._id ? location.state : initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
         <Form className="registration-form">
-          <h3>Registration Form</h3>
+          <h3>{location.state?._id ? "Update Form" : "Registration Form"}</h3>
           <label htmlFor="firstName">First Name</label>
           <Field type="text" id="firstName" name="firstName" />
           <ErrorMessage
@@ -85,8 +117,8 @@ const RegistrationForm = () => {
           <label htmlFor="gender">Gender</label>
           <Field as="select" id="gender" name="gender">
             <option value="">Select</option>
-            <option value="M">M</option>
-            <option value="F">F</option>
+            <option value="male">M</option>
+            <option value="female">F</option>
           </Field>
           <ErrorMessage
             name="gender"
