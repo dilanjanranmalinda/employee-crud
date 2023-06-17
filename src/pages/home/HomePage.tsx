@@ -65,7 +65,7 @@ export default function HomePage() {
                       <td>{gender}</td>
                       <td>
                         <Link
-                          to="/employee/update"
+                          to="/employee/edit"
                           state={{
                             _id,
                             firstName,

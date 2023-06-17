@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/employee/list" element={<HomePage />} />
           <Route path="/employee/add" element={<RegistrationForm />} />
-          <Route path="/employee/update" element={<RegistrationForm />} />
+          <Route path="/employee/edit" element={<RegistrationForm />} />
           <Route path="*" element={<Navigate to="/employee/list" replace />} />
         </Routes>
       </main>
