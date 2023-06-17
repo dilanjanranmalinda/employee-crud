@@ -1,0 +1,74 @@
+@import "/src/common-styles/common-styles.scss";
+
+.container {
+  padding: 1rem;
+  color: $light-gray;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  table {
+    margin-bottom: 1rem;
+    background-color: $dark-gray;
+    color: $light-gray;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+
+    thead th {
+      font-weight: bold;
+      background-color: $light-gray;
+      color: $dark-gray;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    tbody td {
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+    }
+
+    a {
+      text-decoration: none;
+      button {
+        background-color: $dark-gray;
+
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        color: white;
+
+        &:hover {
+          background-color: $light-gray;
+        }
+      }
+    }
+  }
+
+  .add-div {
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+      button {
+        background-color: $dark-gray;
+
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        color: white;
+
+        &:hover {
+          background-color: $light-gray;
+        }
+      }
+    }
+  }
+}
